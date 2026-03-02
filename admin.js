@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('p-name').value = rec.fields[fieldNames.name] || '';
         document.getElementById('p-price').value = rec.fields[fieldNames.price] || 0;
         document.getElementById('p-image').value = getImageUrl(rec.fields, fieldNames.image);
-        document.getElementById('p-status').value = rec.fields[fieldNames.status] || 'In Stock';
+        document.getElementById('p-status').value = rec.fields[fieldNames.status] || 'Available';
         document.getElementById('p-file').value = '';
         document.getElementById('upload-status').textContent = '';
 
