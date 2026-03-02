@@ -16,13 +16,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModal = document.getElementById('close-modal');
     const gadgetForm = document.getElementById('gadget-form');
 
-    // Dynamic field name detection (default to standard capitalized names)
     let fieldNames = {
         name: 'Name',
         price: 'Price',
         image: 'Image',
         status: 'Status'
     };
+
+    // Check for existing session
+    if (sessionStorage.getItem('admin_pin')) {
+        loginScreen.classList.add('hidden');
+        fetchInventory();
+    }
 
     const statusMsg = document.getElementById('form-status-msg');
     const loginError = document.getElementById('login-error');
@@ -228,13 +233,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     fetchInventory();
                 }, 1500);
             } else {
-                const errData = await response.json();
-                console.error('Airtable Error:', errData);
-                let msg = `Airtable Error: ${errData.error.message}`;
-                if (errData.error.type === 'UNKNOWN_FIELD_NAME') {
-                    msg += `. Current fields in code: ${Object.values(fieldNames).join(', ')}`;
+                const errData = await response.json().catch(() => ({ error: { message: 'Unknown Server Error' } }));
+                console.error('Save Error:', errData);
+                const errorMsg = errData.error?.message || errData.message || 'Unknown Error';
+
+                if (response.status === 401) {
+                    showStatus('Session expired or unauthorized. Please log in again.', 'error', 0);
+                    sessionStorage.removeItem('admin_pin');
+                    setTimeout(() => window.location.reload(), 2000);
+                } else {
+                    showStatus(`Error: ${errorMsg}`, 'error', 0);
                 }
-                showStatus(msg, 'error', 0);
             }
         } catch (err) {
             showStatus('Connection Error: ' + err.message, 'error', 0);

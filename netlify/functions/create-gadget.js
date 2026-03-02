@@ -13,7 +13,7 @@ exports.handler = async (event, context) => {
 
     if (event.httpMethod === 'OPTIONS') return { statusCode: 200, headers };
     if (event.httpMethod !== 'POST') return { statusCode: 405, headers, body: 'Method Not Allowed' };
-    if (!clientPin || clientPin !== ADMIN_PIN) return { statusCode: 401, headers, body: JSON.stringify({ error: 'Unauthorized' }) };
+    if (!clientPin || clientPin !== ADMIN_PIN) return { statusCode: 401, headers, body: JSON.stringify({ error: { message: 'Unauthorized' } }) };
 
     try {
         const body = JSON.parse(event.body);

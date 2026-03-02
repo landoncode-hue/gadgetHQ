@@ -3,7 +3,9 @@ const fetch = require('node-fetch');
 exports.handler = async (event, context) => {
     const { AIRTABLE_API_KEY, AIRTABLE_BASE_ID, AIRTABLE_TABLE_NAME, ADMIN_PIN } = process.env;
     const clientPin = event.headers['x-admin-pin'];
-    const id = event.path.split('/').pop();
+
+    const pathParts = event.path.split('/').filter(Boolean);
+    const id = pathParts[pathParts.length - 1] === 'update-gadget' ? null : pathParts[pathParts.length - 1];
 
     const headers = {
         'Content-Type': 'application/json',
@@ -14,8 +16,8 @@ exports.handler = async (event, context) => {
 
     if (event.httpMethod === 'OPTIONS') return { statusCode: 200, headers };
     if (event.httpMethod !== 'PATCH' && event.httpMethod !== 'PUT') return { statusCode: 405, headers, body: 'Method Not Allowed' };
-    if (!clientPin || clientPin !== ADMIN_PIN) return { statusCode: 401, headers, body: JSON.stringify({ error: 'Unauthorized' }) };
-    if (!id || id === 'update-gadget') return { statusCode: 400, headers, body: JSON.stringify({ error: 'Missing ID' }) };
+    if (!clientPin || clientPin !== ADMIN_PIN) return { statusCode: 401, headers, body: JSON.stringify({ error: { message: 'Unauthorized' } }) };
+    if (!id) return { statusCode: 400, headers, body: JSON.stringify({ error: { message: 'Missing record ID in path' } }) };
 
     try {
         const body = JSON.parse(event.body);
