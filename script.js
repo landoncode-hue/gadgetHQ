@@ -100,16 +100,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.selectProduct = (name, price) => {
         formData.product = name;
-        formData.deal = `1 Unit - ₦${parseInt(price).toLocaleString()}`;
+        const numPrice = parseInt(price);
+        updateDeals(name, numPrice);
         const form = document.getElementById('qualification-form');
         form.style.display = 'block';
         form.scrollIntoView({ behavior: 'smooth' });
         goToStep(2);
     };
 
+    function updateDeals(name, price) {
+        const dealsContainer = document.querySelector('.form-step[data-step="3"] .options-grid');
+        if (!dealsContainer) return;
+
+        dealsContainer.innerHTML = `
+            <label class="option-card selected">
+                <input type="radio" name="deal" value="1x ${name} - ₦${price.toLocaleString()}" checked>
+                <div class="option-content">
+                    <div class="option-title">1x ${name}</div>
+                    <div class="option-price">₦${price.toLocaleString()}</div>
+                </div>
+            </label>
+            <label class="option-card">
+                <input type="radio" name="deal" value="2x ${name} - ₦${((price * 2) - 2000).toLocaleString()} (Save ₦2,000)">
+                <div class="option-badge">Most Popular</div>
+                <div class="option-content">
+                    <div class="option-title">2x ${name}</div>
+                    <div class="option-price">₦${((price * 2) - 2000).toLocaleString()} <small>(Save ₦2,000)</small></div>
+                </div>
+            </label>
+            <label class="option-card">
+                <input type="radio" name="deal" value="2x ${name} + Charger - ₦${((price * 2) + 3000).toLocaleString()}">
+                <div class="option-badge">Best Value</div>
+                <div class="option-content">
+                    <div class="option-title">2x ${name} + Charger</div>
+                    <div class="option-price">₦${((price * 2) + 3000).toLocaleString()}</div>
+                </div>
+            </label>
+        `;
+
+        formData.deal = `1x ${name} - ₦${price.toLocaleString()}`;
+        attachOptionListeners();
+    }
+
+    function attachOptionListeners() {
+        const cards = document.querySelectorAll('.form-step[data-step="3"] .option-card');
+        cards.forEach(card => {
+            card.addEventListener('click', function () {
+                cards.forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+                const input = this.querySelector('input[type="radio"]');
+                if (input) {
+                    input.checked = true;
+                    formData.deal = input.value;
+                }
+            });
+        });
+    }
+
     function goToStep(step) {
         steps.forEach(s => s.classList.remove('active'));
-        document.querySelector(`[data-step="${step}"]`).classList.add('active');
+        document.querySelector(`[data - step= "${step}"]`).classList.add('active');
         currentStep = step;
         updateProgress();
         updateHeader();
@@ -117,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateProgress() {
         const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
-        progressFill.style.width = `${progress}%`;
+        progressFill.style.width = `${progress}% `;
     }
 
     function updateHeader() {
@@ -161,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function populateSummary() {
         const summaryGrid = document.querySelector('.summary-grid');
         summaryGrid.innerHTML = `
-            <div class="summary-item"><strong>Product:</strong> ${formData.product}</div>
+            < div class="summary-item" > <strong>Product:</strong> ${formData.product}</div >
             <div class="summary-item"><strong>Deal:</strong> ${formData.deal}</div>
             <div class="summary-item"><strong>Delivery:</strong> ${formData.city}, ${formData.state}</div>
         `;
@@ -187,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function sendToWhatsApp() {
         const businessNumber = "2348106337016";
-        const message = `Hi GadgetHQ,\n\nI want to order:\n*Product:* ${formData.product}\n*Option:* ${formData.deal}\n*Location:* ${formData.city}, ${formData.state}\n*Payment Method:* ${formData.payment}\n\n*Name:* ${formData.fullname}\n*Phone:* ${formData.whatsapp}\n\nPlease confirm availability and next steps.`;
+        const message = `Hi GadgetHQ, \n\nI want to order: \n * Product:* ${formData.product} \n * Option:* ${formData.deal} \n * Location:* ${formData.city}, ${formData.state} \n * Payment Method:* ${formData.payment} \n\n * Name:* ${formData.fullname} \n * Phone:* ${formData.whatsapp} \n\nPlease confirm availability and next steps.`;
         const encodedMessage = encodeURIComponent(message);
         const whatsappUrl = `https://wa.me/${businessNumber}?text=${encodedMessage}`;
         window.open(whatsappUrl, '_blank');
