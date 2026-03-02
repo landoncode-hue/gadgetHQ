@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'product-card';
             card.innerHTML = `
-                <img src="${image}" alt="${name}" onerror="this.src='https://placehold.co/300x200?text=Gadget'">
+                <img class="product-img" src="${image}" alt="${name}" onerror="this.src='https://placehold.co/300x300?text=Gadget'">
                 <div class="product-info">
                     <h3>${name}</h3>
                     <p class="price">₦${price.toLocaleString()}</p>
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.selectProduct = (name, price) => {
         formData.product = name;
         formData.deal = `1 Unit - ₦${parseInt(price).toLocaleString()}`;
-        document.getElementById('booking-portal').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('qualification-form').scrollIntoView({ behavior: 'smooth' });
         goToStep(2);
     };
 
