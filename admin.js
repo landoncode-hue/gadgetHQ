@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loginBtn.addEventListener('click', async () => {
         const response = await fetch(CONFIG.API.VALIDATE_PIN, {
             method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ pin: pinInput.value })
         });
         const result = await response.json();
