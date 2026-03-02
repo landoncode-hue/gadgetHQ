@@ -101,7 +101,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.selectProduct = (name, price) => {
         formData.product = name;
         formData.deal = `1 Unit - ₦${parseInt(price).toLocaleString()}`;
-        document.getElementById('qualification-form').scrollIntoView({ behavior: 'smooth' });
+        const form = document.getElementById('qualification-form');
+        form.style.display = 'block';
+        form.scrollIntoView({ behavior: 'smooth' });
         goToStep(2);
     };
 
