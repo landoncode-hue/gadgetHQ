@@ -146,8 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function validateStep(step) {
         if (step === 2) {
-            const state = document.getElementById('p-state').value;
-            const city = document.getElementById('p-city').value;
+            const state = document.getElementById('state').value;
+            const city = document.getElementById('city').value;
             if (!state || !city) {
                 alert('Please fill in delivery details.');
                 return false;
@@ -168,9 +168,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     submitBtn.addEventListener('click', () => {
-        const name = document.getElementById('p-name').value;
-        const phone = document.getElementById('p-phone').value;
+        const name = document.getElementById('fullname').value;
+        const phone = document.getElementById('whatsapp').value;
         const payment = document.querySelector('input[name="payment"]:checked')?.value || 'Transfer';
+
 
         if (!name || !phone) {
             alert('Please provide your name and WhatsApp number.');
