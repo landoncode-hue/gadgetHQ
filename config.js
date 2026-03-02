@@ -7,6 +7,7 @@ const CONFIG = {
         UPDATE_GADGET: '/.netlify/functions/update-gadget',
         DELETE_GADGET: '/.netlify/functions/delete-gadget',
         UPLOAD_IMAGE: '/.netlify/functions/upload-image',
+        VALIDATE_PIN: '/.netlify/functions/validate-pin'
     },
 
     // Airtable details for fallback/reference (IDs are safe, keys are not)
