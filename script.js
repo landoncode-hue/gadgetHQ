@@ -84,6 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             if (productGrid) {
                 const step1Card = card.cloneNode(true);
+                const imgToRemove = step1Card.querySelector('img');
+                if (imgToRemove) imgToRemove.remove();
+
                 step1Card.querySelector('.select-btn').onclick = () => {
                     formData.product = name;
                     formData.deal = `1 Unit - ₦${price.toLocaleString()}`;
