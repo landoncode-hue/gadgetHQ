@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const result = await response.json();
 
         if (result.success) {
+            sessionStorage.setItem('admin_pin', pinInput.value);
             loginScreen.classList.add('hidden');
             fetchInventory();
         } else {
@@ -78,6 +79,10 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(CONFIG.API.UPLOAD_IMAGE, {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Admin-PIN': sessionStorage.getItem('admin_pin')
+                },
                 body: JSON.stringify({ image: await toBase64(file) })
             });
             const data = await response.json();
@@ -210,7 +215,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(url, {
                 method,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'X-Admin-PIN': sessionStorage.getItem('admin_pin')
                 },
                 body: JSON.stringify(id ? { fields: payload.fields } : { records: [payload] })
             });
@@ -255,7 +261,10 @@ document.addEventListener('DOMContentLoaded', () => {
     window.deleteItem = async (id) => {
         if (!confirm('Are you sure?')) return;
         await fetch(`${CONFIG.API.DELETE_GADGET}/${id}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'X-Admin-PIN': sessionStorage.getItem('admin_pin')
+            }
         });
         fetchInventory();
     };
