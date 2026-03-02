@@ -71,9 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Image Upload Logic
     async function uploadToImgBB(file) {
-        if (!CONFIG.IMGBB_API_KEY || CONFIG.IMGBB_API_KEY === 'YOUR_IMGBB_API_KEY') {
-            throw new Error('Please configure your ImgBB API Key in config.js');
-        }
 
         const statusEl = document.getElementById('upload-status');
         statusEl.textContent = 'Uploading image...';
