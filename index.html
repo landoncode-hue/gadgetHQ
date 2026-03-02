@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GadgetHQ | Original 20,000mAh Fast-Charging Power Bank</title>
+    <meta name="description"
+        content="Stay powered anywhere in Nigeria with GadgetHQ's original 20,000mAh fast-charging power bank. Nationwide delivery and verified quality.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" /></noscript>
+    <!-- End Facebook Pixel Code -->
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">Gadget<span>HQ</span></div>
+            <a href="#qualification-form" class="btn btn-primary btn-sm">Order Now</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h1 class="hero-title">Original 20,000mAh Fast-Charging Power Bank — Delivered Anywhere in Nigeria
+                    </h1>
+                    <p class="hero-subtitle">Stay powered anywhere. Tested before dispatch. Fast charging. Reliable
+                        battery life for your long days.</p>
+
+                    <ul class="trust-bullets">
+                        <li><span class="icon">✓</span> Tested before dispatch</li>
+                        <li><span class="icon">✓</span> 7-Day replacement guarantee</li>
+                        <li><span class="icon">✓</span> Nationwide delivery (24-72h)</li>
+                        <li><span class="icon">✓</span> Pay via transfer or card</li>
+                    </ul>
+
+                    <div class="hero-actions">
+                        <a href="#qualification-form" class="btn btn-primary btn-lg">Check Availability</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="powerbank_hero.png" alt="Premium 20,000mAh Power Bank" id="main-product-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Features Strip -->
+        <section class="trust-strip">
+            <div class="container strip-grid">
+                <div class="strip-item">
+                    <h3>Verified Quality</h3>
+                    <p>Every unit is strictly tested.</p>
+                </div>
+                <div class="strip-item">
+                    <h3>Fast Response</h3>
+                    <p>Quick chat on WhatsApp.</p>
+                </div>
+                <div class="strip-item">
+                    <h3>Transparent Pricing</h3>
+                    <p>No hidden charges, ever.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products Section -->
+        <section class="featured-products">
+            <div class="container">
+                <h2 class="section-title">Our Featured Gadgets</h2>
+                <div id="product-grid-main" class="product-grid">
+                    <!-- Products will be loaded here from Airtable -->
+                    <div class="loading">Loading our latest gadgets...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Qualification Form Section -->
+        <section id="qualification-form" class="form-section">
+            <div class="container">
+                <div class="form-container glass">
+                    <div class="form-header">
+                        <h2 id="form-title">Step 1 of 4</h2>
+                        <div class="progress-bar">
+                            <div class="progress" id="progress-fill" style="width: 25%;"></div>
+                        </div>
+                    </div>
+
+                    <div id="form-steps">
+                        <!-- Step 1: Product Selection -->
+                        <div class="form-step active" data-step="1">
+                            <h3>What would you like to order today?</h3>
+                            <div class="options-grid">
+                                <label class="option-card selected">
+                                    <input type="radio" name="product" value="20000mAh Power Bank" checked>
+                                    <div class="option-content">
+                                        <div class="option-title">20,000mAh Fast Charging Power Bank</div>
+                                        <div class="option-desc">High capacity, sleek design.</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="step-actions">
+                                <button type="button" class="btn btn-primary next-step">Continue</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Location -->
+                        <div class="form-step" data-step="2">
+                            <h3>Where should we deliver your order?</h3>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <select id="state" name="state" required>
+                                    <option value="">Select State</option>
+                                    <option value="Lagos">Lagos</option>
+                                    <option value="Abuja">Abuja</option>
+                                    <option value="Edo (Benin City)">Edo (Benin City)</option>
+                                    <option value="Ogun">Ogun</option>
+                                    <option value="Rivers">Rivers</option>
+                                    <!-- Simplified list for now -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City / Area</label>
+                                <input type="text" id="city" name="city" placeholder="e.g. Ikeja, GRA" required>
+                            </div>
+                            <p class="reassurance">Free delivery in Benin City. Nationwide delivery in 24-72 hours.</p>
+                            <div class="step-actions">
+                                <button type="button" class="btn btn-secondary prev-step">Back</button>
+                                <button type="button" class="btn btn-primary next-step">Continue</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Deals -->
+                        <div class="form-step" data-step="3">
+                            <h3>Choose your preferred option</h3>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="deal" value="1 Power Bank - N14,000">
+                                    <div class="option-content">
+                                        <div class="option-title">1 Power Bank</div>
+                                        <div class="option-price">₦14,000</div>
+                                    </div>
+                                </label>
+                                <label class="option-card selected">
+                                    <input type="radio" name="deal" value="2 Power Banks - N26,000 (Save N2,000)"
+                                        checked>
+                                    <div class="option-badge">Most Popular</div>
+                                    <div class="option-content">
+                                        <div class="option-title">2 Power Banks</div>
+                                        <div class="option-price">₦26,000 <small>(Save ₦2,000)</small></div>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="deal" value="2 Power Banks + Free Fast Charger - N29,000">
+                                    <div class="option-badge">Best Value</div>
+                                    <div class="option-content">
+                                        <div class="option-title">2 Power Banks + Charger</div>
+                                        <div class="option-price">₦29,000</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="step-actions">
+                                <button type="button" class="btn btn-secondary prev-step">Back</button>
+                                <button type="button" class="btn btn-primary next-step">Continue</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Contact & Payment -->
+                        <div class="form-step" data-step="4">
+                            <h3>Almost Done — Final Details</h3>
+                            <div class="form-group">
+                                <label for="fullname">Full Name</label>
+                                <input type="text" id="fullname" name="fullname" placeholder="Enter your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="whatsapp">WhatsApp Number</label>
+                                <input type="tel" id="whatsapp" name="whatsapp" placeholder="080XXXXXXXX" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="payment">Payment Method</label>
+                                <select id="payment" name="payment" required>
+                                    <option value="Transfer">Bank Transfer</option>
+                                    <option value="Card">Card Payment</option>
+                                    <option value="Inspection (Benin Only)">Inspect Before Payment (Benin Residents
+                                        Only)</option>
+                                    <option value="POD (Fee applies)">Pay On Delivery (Confirmation Fee Required)
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="step-actions">
+                                <button type="button" class="btn btn-secondary prev-step">Back</button>
+                                <button id="submit-to-whatsapp" class="btn btn-accent btn-block">Send My Order to
+                                    WhatsApp</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq">
+            <div class="container max-inner">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-list">
+                    <details class="faq-item" open>
+                        <summary>Is this power bank original?</summary>
+                        <p>Yes. Every unit is tested before dispatch. We do not sell refurbished items. We guarantee
+                            capacity and performance.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>How long does delivery take?</summary>
+                        <p>Major cities (Lagos, Abuja, Benin): 24–72 hours. Other states: 2–5 business days.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>What if it stops working?</summary>
+                        <p>We offer a 7-day replacement for factory defects. Just contact us on WhatsApp with your order
+                            details.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Can I pay on delivery?</summary>
+                        <p>Available in selected cities only. Outside major hubs, a small confirmation fee is required
+                            to secure your dispatch.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 GadgetHQ. All rights reserved.</p>
+            <p class="disclaimer">Not affiliated with Facebook or WhatsApp Inc. | <a href="admin.html"
+                    style="color: inherit; text-decoration: none; opacity: 0.5;">Admin</a></p>
+        </div>
+    </footer>
+
+    <!-- Sticky Mobile CTA -->
+    <div class="sticky-cta mobile-only">
+        <a href="#qualification-form" class="btn btn-primary btn-block">Order Now - Save ₦2,000</a>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
