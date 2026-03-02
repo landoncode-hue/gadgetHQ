@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function goToStep(step) {
         steps.forEach(s => s.classList.remove('active'));
-        document.querySelector(`[data - step= "${step}"]`).classList.add('active');
+        document.querySelector(`[data-step="${step}"]`).classList.add('active');
         currentStep = step;
         updateProgress();
         updateHeader();
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateProgress() {
         const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
-        progressFill.style.width = `${progress}% `;
+        progressFill.style.width = `${progress}%`;
     }
 
     function updateHeader() {
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function populateSummary() {
         const summaryGrid = document.querySelector('.summary-grid');
         summaryGrid.innerHTML = `
-            < div class="summary-item" > <strong>Product:</strong> ${formData.product}</div >
+            <div class="summary-item"><strong>Product:</strong> ${formData.product}</div>
             <div class="summary-item"><strong>Deal:</strong> ${formData.deal}</div>
             <div class="summary-item"><strong>Delivery:</strong> ${formData.city}, ${formData.state}</div>
         `;
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function sendToWhatsApp() {
         const businessNumber = "2348106337016";
-        const message = `Hi GadgetHQ, \n\nI want to order: \n * Product:* ${formData.product} \n * Option:* ${formData.deal} \n * Location:* ${formData.city}, ${formData.state} \n * Payment Method:* ${formData.payment} \n\n * Name:* ${formData.fullname} \n * Phone:* ${formData.whatsapp} \n\nPlease confirm availability and next steps.`;
+        const message = `Hi GadgetHQ,\n\nI want to order:\n*Product:* ${formData.product}\n*Option:* ${formData.deal}\n*Location:* ${formData.city}, ${formData.state}\n*Payment Method:* ${formData.payment}\n\n*Name:* ${formData.fullname}\n*Phone:* ${formData.whatsapp}\n\nPlease confirm availability and next steps.`;
         const encodedMessage = encodeURIComponent(message);
         const whatsappUrl = `https://wa.me/${businessNumber}?text=${encodedMessage}`;
         window.open(whatsappUrl, '_blank');
