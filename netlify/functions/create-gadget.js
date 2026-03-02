@@ -27,8 +27,16 @@ exports.handler = async (event, context) => {
         });
 
         const data = await response.json();
+
+        if (!response.ok) {
+            console.error('Airtable API Error:', data);
+            return { statusCode: response.status, headers, body: JSON.stringify({ error: data.error || { message: 'Failed to create record in Airtable' } }) };
+        }
+
         return { statusCode: response.status, headers, body: JSON.stringify(data) };
     } catch (error) {
-        return { statusCode: 500, headers, body: JSON.stringify({ error: 'Failed to create record', detail: error.message }) };
+        console.error('Server Internal Error:', error);
+        return { statusCode: 500, headers, body: JSON.stringify({ error: { message: 'Internal Server Error', detail: error.message } }) };
     }
 };
+

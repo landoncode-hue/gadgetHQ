@@ -20,6 +20,20 @@ exports.handler = async (event, context) => {
 
         const data = await response.json();
 
+        if (!response.ok) {
+            console.error('Airtable API Error:', data);
+            return {
+                statusCode: response.status,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type',
+                    'Access-Control-Allow-Methods': 'GET, OPTIONS'
+                },
+                body: JSON.stringify({ error: data.error || { message: 'Failed to fetch data from Airtable' } })
+            };
+        }
+
         return {
             statusCode: response.status,
             headers: {
@@ -31,9 +45,16 @@ exports.handler = async (event, context) => {
             body: JSON.stringify(data),
         };
     } catch (error) {
+        console.error('Server Internal Error:', error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: 'Failed to fetch data', detail: error.message }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Methods': 'GET, OPTIONS'
+            },
+            body: JSON.stringify({ error: { message: 'Internal Server Error', detail: error.message } }),
         };
     }
 };

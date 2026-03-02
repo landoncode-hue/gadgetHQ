@@ -29,8 +29,15 @@ exports.handler = async (event, context) => {
         });
 
         const data = await response.json();
+
+        if (!response.ok) {
+            console.error('ImgBB API Error:', data);
+            return { statusCode: response.status, headers, body: JSON.stringify({ error: data.error || { message: 'Failed to upload image' } }) };
+        }
+
         return { statusCode: response.status, headers, body: JSON.stringify(data) };
     } catch (error) {
-        return { statusCode: 500, headers, body: JSON.stringify({ error: 'Upload failed', detail: error.message }) };
+        console.error('Server Internal Error:', error);
+        return { statusCode: 500, headers, body: JSON.stringify({ error: { message: 'Internal Server Error', detail: error.message } }) };
     }
 };

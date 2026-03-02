@@ -44,7 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             if (inventory.length > 0) renderDynamicProducts();
         } catch (err) {
-            console.warn('Airtable fetch failed, using fallback.', err);
+            console.error('Airtable fetch failed:', err);
+            const grid = document.getElementById('product-grid-main');
+            if (grid) {
+                grid.innerHTML = '<div class="error-state">Failed to load products. Please refresh the page to try again.</div>';
+            }
         }
     }
 
