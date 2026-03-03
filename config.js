@@ -2,12 +2,12 @@
 const CONFIG = {
     // Serverless API Endpoints
     API: {
-        GET_GADGETS: '/.netlify/functions/get-gadgets',
-        CREATE_GADGET: '/.netlify/functions/create-gadget',
-        UPDATE_GADGET: '/.netlify/functions/update-gadget',
-        DELETE_GADGET: '/.netlify/functions/delete-gadget',
-        UPLOAD_IMAGE: '/.netlify/functions/upload-image',
-        VALIDATE_PIN: '/.netlify/functions/validate-pin'
+        GET_GADGETS: '/api/get-gadgets',
+        CREATE_GADGET: '/api/create-gadget',
+        UPDATE_GADGET: '/api/update-gadget',
+        DELETE_GADGET: '/api/delete-gadget',
+        UPLOAD_IMAGE: '/api/upload-image',
+        VALIDATE_PIN: '/api/validate-pin'
     },
 
     // Airtable details for fallback/reference (IDs are safe, keys are not)

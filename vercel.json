@@ -1,0 +1,16 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/get-gadgets/:id",
+            "destination": "/api/get-gadgets?id=:id"
+        },
+        {
+            "source": "/api/update-gadget/:id",
+            "destination": "/api/update-gadget?id=:id"
+        },
+        {
+            "source": "/api/delete-gadget/:id",
+            "destination": "/api/delete-gadget?id=:id"
+        }
+    ]
+}
