@@ -1,18 +1,20 @@
 :root {
-    --primary: #0a2540;
-    /* Deep Blue */
-    --primary-light: #1a3a5a;
-    --accent: #ffcc00;
-    /* Gold/Yellow */
-    --accent-hover: #e6b800;
-    --dark: #1e293b;
+    --primary: #1d4ed8;
+    /* Deeper Professional Blue */
+    --primary-light: #2563eb;
+    --primary-dark: #1e40af;
+    --accent: #facc15;
+    /* Brighter Gold */
+    --accent-hover: #eab308;
+    --dark: #0f172a;
     --light: #ffffff;
     --bg-alt: #f8fafc;
     --gray: #64748b;
     --border: #e2e8f0;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --radius: 12px;
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --radius: 16px;
     --font-main: 'Inter', sans-serif;
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -32,6 +34,7 @@ body {
     color: var(--dark);
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
 .container {
@@ -48,8 +51,10 @@ body {
 h1,
 h2,
 h3 {
-    font-weight: 700;
-    line-height: 1.2;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
 }
 
 /* Header */
