@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let inventory = [];
 
     const formData = {
-        product: '20,000mAh Power Bank',
+        product: 'Fast-Charging Power Bank',
         state: '',
         city: '',
         deal: '2 Power Banks - N26,000 (Save N2,000)',
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <img class="product-img" src="${image}" alt="${name}" onerror="this.src='https://placehold.co/300x300?text=Gadget'">
                 <div class="product-info">
                     <h3>${name}</h3>
-                    <p class="price">₦${price.toLocaleString()}</p>
+                    <p class="price"><span class="old-price">₦${Math.round(price * 1.3).toLocaleString()}</span>₦${price.toLocaleString()}</p>
                     <button class="btn btn-primary select-btn" onclick="selectProduct('${name}', '${price}')">Order Now</button>
                 </div>
             `;
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <input type="radio" name="deal" value="1x ${name} - ₦${price.toLocaleString()}" checked>
                 <div class="option-content">
                     <div class="option-title">1x ${name}</div>
-                    <div class="option-price">₦${price.toLocaleString()}</div>
+                    <div class="option-price"><span class="old-price">₦${Math.round(price * 1.3).toLocaleString()}</span>₦${price.toLocaleString()}</div>
                 </div>
             </label>
             <label class="option-card">
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="option-badge">Most Popular</div>
                 <div class="option-content">
                     <div class="option-title">2x ${name}</div>
-                    <div class="option-price">₦${((price * 2) - 2000).toLocaleString()} <small>(Save ₦2,000)</small></div>
+                    <div class="option-price"><span class="old-price">₦${Math.round((price * 2) * 1.3).toLocaleString()}</span>₦${((price * 2) - 2000).toLocaleString()} <small>(Save ₦2,000)</small></div>
                 </div>
             </label>
             <label class="option-card">
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="option-badge">Best Value</div>
                 <div class="option-content">
                     <div class="option-title">2x ${name} + Charger</div>
-                    <div class="option-price">₦${((price * 2) + 3000).toLocaleString()}</div>
+                    <div class="option-price"><span class="old-price">₦${Math.round(((price * 2) + 3000) * 1.3).toLocaleString()}</span>₦${((price * 2) + 3000).toLocaleString()}</div>
                 </div>
             </label>
         `;
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
     submitBtn.addEventListener('click', () => {
         const name = document.getElementById('fullname').value;
         const phone = document.getElementById('whatsapp').value;
-        const payment = document.querySelector('input[name="payment"]:checked')?.value || 'Transfer';
+        const payment = document.getElementById('payment').value;
 
 
         if (!name || !phone) {
