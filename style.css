@@ -1,21 +1,30 @@
 :root {
     --primary: #1d4ed8;
-    /* Deeper Professional Blue */
     --primary-light: #2563eb;
     --primary-dark: #1e40af;
     --accent: #facc15;
-    /* Brighter Gold */
     --accent-hover: #eab308;
     --dark: #0f172a;
     --light: #ffffff;
-    --bg-alt: #f8fafc;
+    --bg-alt: #f1f5f9;
     --gray: #64748b;
-    --border: #e2e8f0;
-    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --radius: 16px;
+    --border: rgba(15, 23, 42, 0.08);
+    /* Micro-border */
+    --border-light: rgba(255, 255, 255, 0.2);
+    --shadow-soft: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.04);
+    --shadow-lg: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 10px 10px -5px rgba(15, 23, 42, 0.04);
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
     --font-main: 'Inter', sans-serif;
     --font-heading: 'Plus Jakarta Sans', sans-serif;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Segment Mesh Gradients */
+    --mesh-1: #e0e7ff;
+    --mesh-2: #dbeafe;
+    --mesh-3: #fef9c3;
 }
 
 * {
@@ -52,19 +61,22 @@ h1,
 h2,
 h3 {
     font-family: var(--font-heading);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-weight: 900;
+    /* Ultra bold */
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    /* Tighter for Segment feel */
+    color: var(--dark);
 }
 
 /* Header */
 .header {
-    padding: 16px 0;
+    padding: 12px 0;
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
     z-index: 1000;
 }
 
@@ -91,43 +103,50 @@ h3 {
     align-items: center;
     justify-content: center;
     padding: 14px 28px;
-    border-radius: var(--radius);
-    font-weight: 600;
+    border-radius: var(--radius-md);
+    font-weight: 700;
     text-decoration: none;
     cursor: pointer;
     transition: var(--transition);
-    border: none;
-    font-size: 16px;
+    border: 1px solid transparent;
+    font-size: 15px;
+    letter-spacing: -0.01em;
 }
 
 .btn-primary {
     background: var(--primary);
     color: white;
+    box-shadow: 0 4px 12px rgba(29, 78, 216, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .btn-primary:hover {
     background: var(--primary-light);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(29, 78, 216, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .btn-accent {
     background: var(--accent);
-    color: var(--primary);
+    color: var(--dark);
+    box-shadow: 0 4px 12px rgba(250, 204, 21, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .btn-accent:hover {
     background: var(--accent-hover);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(250, 204, 21, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .btn-secondary {
     background: white;
-    color: var(--primary);
+    color: var(--dark);
     border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
 }
 
 .btn-secondary:hover {
     background: var(--bg-alt);
+    border-color: var(--gray);
 }
 
 .btn-sm {
@@ -146,30 +165,47 @@ h3 {
 
 /* Hero Section */
 .hero {
-    padding: 80px 0;
+    padding: 120px 0 100px;
     position: relative;
     overflow: hidden;
-    background: white;
+    background: radial-gradient(at 0% 0%, var(--mesh-1) 0, transparent 50%),
+        radial-gradient(at 100% 0%, var(--mesh-2) 0, transparent 50%),
+        radial-gradient(at 50% 100%, var(--mesh-3) 0, transparent 50%);
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to top, white, transparent);
+    z-index: 1;
 }
 
 .hero-grid {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 60px;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 80px;
     align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-title {
-    font-size: 48px;
+    font-size: 64px;
     margin-bottom: 24px;
-    color: var(--primary);
+    color: var(--dark);
+    line-height: 0.95;
 }
 
 .hero-subtitle {
-    font-size: 18px;
+    font-size: 20px;
     color: var(--gray);
-    margin-bottom: 32px;
-    max-width: 500px;
+    margin-bottom: 40px;
+    max-width: 520px;
+    line-height: 1.4;
 }
 
 .trust-bullets {
@@ -256,16 +292,18 @@ h3 {
 .product-card {
     background: white;
     border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: var(--radius-md);
     overflow: hidden;
     transition: var(--transition);
     display: flex;
     flex-direction: column;
+    box-shadow: var(--shadow-soft);
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-light);
 }
 
 .product-img {
@@ -327,13 +365,14 @@ h3 {
 }
 
 .form-container {
-    max-width: 600px;
+    max-width: 640px;
     margin: 0 auto;
-    padding: 40px;
-    border-radius: 24px;
-    background: white;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
+    padding: 48px;
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-lg), inset 0 1px 1px rgba(255, 255, 255, 0.4);
 }
 
 .form-header {
@@ -495,10 +534,16 @@ h3 {
 }
 
 .faq-item {
-    background: var(--bg-alt);
+    background: white;
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 20px;
+    border-radius: var(--radius-md);
+    padding: 24px;
+    transition: var(--transition);
+}
+
+.faq-item:hover {
+    border-color: var(--primary-light);
+    box-shadow: var(--shadow-md);
 }
 
 .faq-item summary {
